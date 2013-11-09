@@ -52,8 +52,8 @@ skin.controls.button_text_hover_color               = textcolor
 skin.controls.button_text_nonclickable_color        = textcolor:lighten(15)
 skin.controls.button_body_nohover_color             = bodycolor:darken(5)
 skin.controls.button_body_down_color                = bodycolor:darken(10)
-skin.controls.button_body_hover_color               = bodycolor:darken(5)
-skin.controls.button_body_nonclickable_color        = bodycolor:lighten(30)
+skin.controls.button_body_hover_color               = bodycolor:darken(3)
+skin.controls.button_body_nonclickable_color        = bodycolor:lighten(10)
 skin.controls.button_body_shadow_color              = bodycolor:darken(10)
 skin.controls.button_text_font                      = smallfont
 

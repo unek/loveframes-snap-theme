@@ -1,5 +1,4 @@
 # Snap
-## Information
 Snap is a nice, light theme for [Love Frames](https://github.com/NikolaiResokav/LoveFrames) - GUI library for [LÖVE](http://www.love2d.org).
 
 ## Installation
