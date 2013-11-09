@@ -383,10 +383,11 @@ end
 function skin.DrawCloseButton(object)
 
     local skin = object:GetSkin()
-    local x = object:GetX()
-    local y = object:GetY()
     local parent = object.parent
     local parentwidth = parent:GetWidth()
+    object.y = parent.y
+    local x = object:GetX()
+    local y = object:GetY()
     local hover = object:GetHover()
     local down = object.down
     local bodydowncolor = skin.controls.closebutton_body_down_color
@@ -396,15 +397,15 @@ function skin.DrawCloseButton(object)
     if down then
         -- button body
         love.graphics.setColor(bodydowncolor)
-        love.graphics.rectangle("fill", x, y - 4, 15, 5)
+        love.graphics.rectangle("fill", x, y, 15, 5)
     elseif hover then
         -- button body
         love.graphics.setColor(bodyhovercolor)
-        love.graphics.rectangle("fill", x, y - 4, 15, 5)
+        love.graphics.rectangle("fill", x, y, 15, 5)
     else
         -- button body
         love.graphics.setColor(bodynohovercolor)
-        love.graphics.rectangle("fill", x, y - 4, 15, 5)
+        love.graphics.rectangle("fill", x, y, 15, 5)
     end
     
     object:SetPos(parentwidth - 20, 4)
