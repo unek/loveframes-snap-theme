@@ -58,7 +58,8 @@ skin.controls.button_body_shadow_color              = bodycolor:darken(10)
 skin.controls.button_text_font                      = smallfont
 
 -- checkbox
-skin.controls.checkbox_body_color                   = bodycolor:darken(5)
+skin.controls.checkbox_body_nohover_color           = bodycolor:darken(5)
+skin.controls.checkbox_body_hover_color             = bodycolor:darken(3)
 skin.controls.checkbox_body_shadow_color            = bodycolor:darken(10)
 skin.controls.checkbox_check_color                  = darkcolor
 skin.controls.checkbox_text_font                    = smallfont
@@ -80,14 +81,11 @@ skin.controls.columnlistheader_text_color           = whitecolor
 skin.controls.columnlistheader_text_font            = boldfont
 
 -- columnlistrow
-skin.controls.columnlistrow_body1_color             = whitecolor:darken(0)
+skin.controls.columnlistrow_body1_color             = whitecolor
 skin.controls.columnlistrow_body2_color             = whitecolor:darken(5)
 skin.controls.columnlistrow_body_selected_color     = darkcolor
 skin.controls.columnlistrow_text_color              = darkcolor
 skin.controls.columnlistrow_text_selected_color     = bodycolor
-
--- scrollbody
-skin.controls.scrollbody_body_color                 = bodycolor:darken(5)
 
 -- scrollbar
 skin.controls.scrollbar_body_nohover_color          = darkcolor:lighten(15)
@@ -103,7 +101,8 @@ skin.controls.slider_button_body_down_color         = whitecolor:darken(3)
 skin.controls.slider_button_body_nonclickable_color = bodycolor:lighten(5)
 
 -- multichoice
-skin.controls.multichoice_body_color                = bodycolor:darken(5)
+skin.controls.multichoice_body_nohover_color        = bodycolor:darken(5)
+skin.controls.multichoice_body_hover_color          = bodycolor:darken(3)
 skin.controls.multichoice_body_shadow_color         = bodycolor:darken(10)
 skin.controls.multichoice_text_color                = textcolor
 skin.controls.multichoice_text_font                 = smallfont
@@ -425,15 +424,19 @@ function skin.DrawCheckBox(object)
     local width = object:GetBoxWidth() - 2
     local height = object:GetBoxHeight() - 3
     local checked = object:GetChecked()
-    local hover = object:GetHover()
-    local bodycolor = skin.controls.checkbox_body_color
+    local bodynohovercolor = skin.controls.checkbox_body_nohover_color
+    local bodyhovercolor = skin.controls.checkbox_body_hover_color
     local checkcolor = skin.controls.checkbox_check_color
     local shadowcolor = skin.controls.checkbox_body_shadow_color
     local radius = 2
     
     love.graphics.setColor(shadowcolor)
     skin.RoundedRectangle(x, y, width, height + radius, radius)
-    love.graphics.setColor(bodycolor)
+    if hover then
+        love.graphics.setColor(bodyhovercolor)
+    else
+        love.graphics.setColor(bodynohovercolor)
+    end
     skin.RoundedRectangle(x, y, width, height, 3)
     
     if checked then
@@ -567,17 +570,6 @@ end
     - desc: draws the scroll area object
 --]]---------------------------------------------------------
 function skin.DrawScrollArea(object)
-
-    local skin = object:GetSkin()
-    local x = object:GetX()
-    local y = object:GetY()
-    local width = object:GetWidth()
-    local height = object:GetHeight()
-    local bartype = object:GetBarType()
-    local bodycolor = skin.controls.scrollarea_body_color
-    
-    love.graphics.setColor(bodycolor)
-    love.graphics.rectangle("fill", x, y, width, height)
     
 end
 
@@ -615,16 +607,6 @@ end
     - desc: draws the scroll body object
 --]]---------------------------------------------------------
 function skin.DrawScrollBody(object)
-
-    local skin = object:GetSkin()
-    local x = object:GetX()
-    local y = object:GetY()
-    local width = object:GetWidth()
-    local height = object:GetHeight()
-    local bodycolor = skin.controls.scrollbody_body_color
-    
-    love.graphics.setColor(bodycolor)
-    love.graphics.rectangle("fill", x, y, width, height)
 
 end
 
@@ -752,16 +734,22 @@ function skin.DrawMultiChoice(object)
     local height = object:GetHeight()
     local text = object:GetText()
     local choice = object:GetChoice()
+    local hover = object:GetHover()
     local font = skin.controls.multichoice_text_font
     local theight = font:getHeight()
-    local bodycolor = skin.controls.multichoice_body_color
+    local bodynohovercolor = skin.controls.multichoice_body_nohover_color
+    local bodyhovercolor = skin.controls.multichoice_body_hover_color
     local textcolor = skin.controls.multichoice_text_color
     local shadowcolor = skin.controls.multichoice_body_shadow_color
     local radius = 3
     
     love.graphics.setColor(shadowcolor)
     skin.RoundedRectangle(x, y, width, height + radius, radius)
-    love.graphics.setColor(bodycolor)
+    if hover then
+        love.graphics.setColor(bodyhovercolor)
+    else
+        love.graphics.setColor(bodynohovercolor)
+    end
     skin.RoundedRectangle(x, y, width, height, radius)
     
     love.graphics.setColor(textcolor)
