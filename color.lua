@@ -1,3 +1,11 @@
+local meta = {__index = function(table, key)
+	local value = getfenv(0)[key]
+	rawset(table, key, value)
+	return value
+end}
+
+local env = setmetatable({},meta)
+setfenv(1, env)
 -- // Additional math functions // --
 local function clamp(low, n, high) return math.min(math.max(low, n), high) end
 
@@ -112,6 +120,7 @@ end
 function rgb(rgb, g, b, a, hsl)
 	local rgb = assert(rgb, "assertion failed: #1 not specified")
 
+	local r
 	if type(rgb) == "table" then
 		r, g, b, a = unpack(rgb)
 	else
@@ -147,3 +156,5 @@ function hex(hex)
 
 	return setmetatable(self, Color)
 end
+
+return env

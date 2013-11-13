@@ -17,7 +17,7 @@ skin.version = "1.0"
 skin.base = "Blue"
 
 -- color definitions
-require(path .. ".color")
+local rgb = require(path .. ".color").rgb
 
 local darkcolor = rgb(68, 68, 68)
 local bodycolor = rgb(236, 232, 232)
