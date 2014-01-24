@@ -12,8 +12,8 @@ local skin = {}
 
 -- skin info (you always need this in a skin)
 skin.name = "Snap"
-skin.author = "unek.blinkenshell.org"
-skin.version = "1.0"
+skin.author = "unek.czarnawol.ga"
+skin.version = "1.1"
 skin.base = "Blue"
 
 -- color definitions
@@ -153,6 +153,18 @@ skin.controls.progressbar_text_font                 = smallfont
 skin.controls.linenumberspanel_text_color           = textcolor
 skin.controls.linenumberspanel_body_color           = bodycolor
 
+-- form
+skin.controls.form_text_color                       = textcolor:lighten(10)
+skin.controls.form_text_font                        = smallfont
+
+-- menu
+skin.controls.menu_body_color                       = bodycolor:darken(3)
+
+-- menuoption
+skin.controls.menuoption_body_hover_color           = bodycolor:darken(15)
+skin.controls.menuoption_text_hover_color           = textcolor
+skin.controls.menuoption_text_color                 = textcolor
+
 function skin.OutlinedRectangle(x, y, width, height, ovt, ovb, ovl, ovr)
     -- borders are so 2012
 end
@@ -167,6 +179,7 @@ function skin.RoundedRectangle(x, y, w, h, r)
    love.graphics.arc("fill", x + w-r, y + h-r, r, 0, math.pi * 0.5)
    love.graphics.arc("fill", x+r, y + h-r, r, math.pi * 0.5, math.pi)
 end
+-- very shitty
 function skin.Triangle(x, y, side, rot)
     if rot then
         love.graphics.polygon("fill", x, y, x - side, y + side, x + side, y + side)
@@ -976,6 +989,92 @@ function skin.DrawCollapsibleCategory(object)
     love.graphics.setFont(font)
     love.graphics.setColor(textcolor)
     love.graphics.print(text, x + 23, y + 3)
+    
+end
+
+--[[---------------------------------------------------------
+    - func: skin.DrawForm(object)
+    - desc: draws the form object
+--]]---------------------------------------------------------
+function skin.DrawForm(object)
+
+    local skin = object:GetSkin()
+    local x = object:GetX()
+    local y = object:GetY()
+    local width = object:GetWidth()
+    local height = object:GetHeight()
+    local topmargin = object.topmargin
+    local name = object.name
+    local font = skin.controls.form_text_font
+    local textcolor = skin.controls.form_text_color
+    
+    love.graphics.setFont(font)
+    love.graphics.setColor(textcolor)
+    love.graphics.print(name, x + 7, y)
+
+end
+
+--[[---------------------------------------------------------
+    - func: skin.DrawMenu(object)
+    - desc: draws the menu object
+--]]---------------------------------------------------------
+function skin.DrawMenu(object)
+    
+    local skin = object:GetSkin()
+    local x = object:GetX()
+    local y = object:GetY()
+    local width = object:GetWidth()
+    local height = object:GetHeight()
+    local bodycolor = skin.controls.menu_body_color
+    
+    love.graphics.setColor(bodycolor)
+    love.graphics.rectangle("fill", x, y, width, height)
+    
+end
+
+--[[---------------------------------------------------------
+    - func: skin.DrawMenuOption(object)
+    - desc: draws the menuoption object
+--]]---------------------------------------------------------
+function skin.DrawMenuOption(object)
+
+    local skin = object:GetSkin()
+    local x = object:GetX()
+    local y = object:GetY()
+    local width = object:GetWidth()
+    local height = object:GetHeight()
+    local hover = object:GetHover()
+    local text = object:GetText()
+    local icon = object:GetIcon()
+    local option_type = object.option_type
+    local body_hover_color = skin.controls.menuoption_body_hover_color
+    local text_hover_color = skin.controls.menuoption_text_hover_color
+    local text_color = skin.controls.menuoption_text_color
+    local twidth = smallfont:getWidth(text)
+    
+    
+    if option_type == "divider" then
+        love.graphics.setColor(body_hover_color)
+        love.graphics.rectangle("fill", x + 4, y + 2, width - 8, 1)
+        object.contentheight = 10
+    else
+        love.graphics.setFont(smallfont)
+        if hover then
+            love.graphics.setColor(body_hover_color)
+            love.graphics.rectangle("fill", x, y, width, height)
+            love.graphics.setColor(text_hover_color)
+            love.graphics.print(text, x + 26, y + 5)
+        else
+            love.graphics.setColor(text_color)
+            love.graphics.print(text, x + 26, y + 5)
+        end
+        if icon then
+            love.graphics.setColor(255, 255, 255, 255)
+            love.graphics.draw(icon, x + 5, y + 5)
+        end
+        object.contentwidth = twidth + 31
+        object.contentheight = 25
+    end
     
 end
 
