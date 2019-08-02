@@ -194,7 +194,7 @@ end
     - func: DrawFrame(object)
     - desc: draws the frame object
 --]]---------------------------------------------------------
-function skin.DrawFrame(object)
+function skin.frame(object)
 
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -259,7 +259,7 @@ function skin.DrawFrame(object)
     
 end
 
-function skin.DrawNumberBoxButton(object)
+function skin.numberboxbutton(object)
     
     local x = object:GetX()
     local y = object:GetY()
@@ -313,7 +313,7 @@ end
     - func: DrawButton(object)
     - desc: draws the button object
 --]]---------------------------------------------------------
-function skin.DrawButton(object)
+function skin.button(object)
 
     local skin = object:GetSkin()
     local parent = object:GetParent()
@@ -394,7 +394,7 @@ end
     - func: DrawCloseButton(object)
     - desc: draws the close button object
 --]]---------------------------------------------------------
-function skin.DrawCloseButton(object)
+function skin.closebutton(object)
 
     local skin = object:GetSkin()
     local parent = object.parent
@@ -431,7 +431,7 @@ end
     - func: skin.DrawCheckBox(object)
     - desc: draws the check box object
 --]]---------------------------------------------------------
-function skin.DrawCheckBox(object)
+function skin.checkbox(object)
     
     local skin = object:GetSkin()
     local x = object:GetX() + 2
@@ -468,7 +468,7 @@ end
     - func: skin.DrawColumnList(object)
     - desc: draws the column list object
 --]]---------------------------------------------------------
-function skin.DrawColumnList(object)
+function skin.columnlist(object)
     
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -486,7 +486,7 @@ end
     - func: skin.DrawColumnListHeader(object)
     - desc: draws the column list header object
 --]]---------------------------------------------------------
-function skin.DrawColumnListHeader(object)
+function skin.columnlistheader(object)
     
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -515,7 +515,7 @@ end
     - func: skin.DrawColumnListArea(object)
     - desc: draws the column list area object
 --]]---------------------------------------------------------
-function skin.DrawColumnListArea(object)
+function skin.columnlistarea(object)
         
 end
 
@@ -523,7 +523,7 @@ end
     - func: skin.DrawOverColumnListArea(object)
     - desc: draws over the column list area object
 --]]---------------------------------------------------------
-function skin.DrawOverColumnListArea(object)
+function skin.columnlistarea_over(object)
     
 end
 
@@ -531,7 +531,7 @@ end
     - func: skin.DrawColumnListRow(object)
     - desc: draws the column list row object
 --]]---------------------------------------------------------
-function skin.DrawColumnListRow(object)
+function skin.columnlistrow(object)
     
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -584,7 +584,7 @@ end
     - func: DrawScrollArea(object)
     - desc: draws the scroll area object
 --]]---------------------------------------------------------
-function skin.DrawScrollArea(object)
+function skin.scrollarea(object)
     
 end
 
@@ -592,7 +592,7 @@ end
     - func: DrawScrollBar(object)
     - desc: draws the scroll bar object
 --]]---------------------------------------------------------
-function skin.DrawScrollBar(object)
+function skin.scrollbar(object)
 
     local skin = object:GetSkin()
     local x = object:GetX() + 4
@@ -621,7 +621,7 @@ end
     - func: DrawScrollBody(object)
     - desc: draws the scroll body object
 --]]---------------------------------------------------------
-function skin.DrawScrollBody(object)
+function skin.scrollbody(object)
 
 end
 
@@ -629,7 +629,7 @@ end
     - func: DrawScrollButton(object)
     - desc: draws the scroll button object
 --]]---------------------------------------------------------
-function skin.DrawScrollButton(object)
+function skin.scrollbutton(object)
 
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -662,7 +662,7 @@ end
     - func: skin.DrawSlider(object)
     - desc: draws the slider object
 --]]---------------------------------------------------------
-function skin.DrawSlider(object)
+function skin.slider(object)
     
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -696,7 +696,7 @@ end
     - func: skin.DrawSliderButton(object)
     - desc: draws the slider button object
 --]]---------------------------------------------------------
-function skin.DrawSliderButton(object)
+function skin.sliderbutton(object)
 
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -740,7 +740,7 @@ end
     - func: DrawMultiChoice(object)
     - desc: draws the multi choice object
 --]]---------------------------------------------------------
-function skin.DrawMultiChoice(object)
+function skin.multichoice(object)
     
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -783,7 +783,7 @@ end
     - func: DrawMultiChoiceList(object)
     - desc: draws the multi choice list object
 --]]---------------------------------------------------------
-function skin.DrawMultiChoiceList(object)
+function skin.multichoicelist(object)
     
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -801,7 +801,7 @@ end
     - func: DrawOverMultiChoiceList(object)
     - desc: draws over the multi choice list object
 --]]---------------------------------------------------------
-function skin.DrawOverMultiChoiceList(object)
+function skin.multichoicelist_over(object)
 
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -815,7 +815,7 @@ end
     - func: DrawMultiChoiceRow(object)
     - desc: draws the multi choice row object
 --]]---------------------------------------------------------
-function skin.DrawMultiChoiceRow(object)
+function skin.multichoicerow(object)
     
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -849,7 +849,7 @@ end
     - func: DrawTabButton(object)
     - desc: draws the tab button object
 --]]---------------------------------------------------------
-function skin.DrawTabButton(object)
+function skin.tabbutton(object)
 
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -931,7 +931,7 @@ end
     - func: DrawProgressBar(object)
     - desc: draws the progress bar object
 --]]---------------------------------------------------------
-function skin.DrawProgressBar(object)
+function skin.progressbar(object)
 
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -964,7 +964,7 @@ end
     - func: skin.DrawCollapsibleCategory(object)
     - desc: draws the collapsible category object
 --]]---------------------------------------------------------
-function skin.DrawCollapsibleCategory(object)
+function skin.collapsiblecategory(object)
     
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -998,7 +998,7 @@ end
     - func: skin.DrawForm(object)
     - desc: draws the form object
 --]]---------------------------------------------------------
-function skin.DrawForm(object)
+function skin.form(object)
 
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -1020,7 +1020,7 @@ end
     - func: skin.DrawMenu(object)
     - desc: draws the menu object
 --]]---------------------------------------------------------
-function skin.DrawMenu(object)
+function skin.menu(object)
     
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -1038,7 +1038,7 @@ end
     - func: skin.DrawMenuOption(object)
     - desc: draws the menuoption object
 --]]---------------------------------------------------------
-function skin.DrawMenuOption(object)
+function skin.menuoption(object)
 
     local skin = object:GetSkin()
     local x = object:GetX()
