@@ -4,8 +4,9 @@
 --]]------------------------------------------------
 
 -- skin path
-local dir = (...):sub(0, -6)
-local path = string.gsub(dir, "/", "%.")
+local path = (...):sub(0, -6)
+local dir = string.gsub(path, "%.", "/")
+
 return function(loveframes)
 
 -- skin table
