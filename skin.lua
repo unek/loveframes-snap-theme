@@ -248,7 +248,7 @@ function skin.DrawFrame(object)
         local iconwidth = icon:getWidth()
         local iconheight = icon:getHeight()
         icon:setFilter("nearest", "nearest")
-        love.graphics.setColor(255, 255, 255, 255)
+        love.graphics.setColor(1, 1, 1, 1)
         love.graphics.draw(icon, x + 5, y + 5)
         love.graphics.setColor(namecolor)
         love.graphics.print(name, x + iconwidth + 10, y + 4)
@@ -299,12 +299,12 @@ function skin.DrawNumberBoxButton(object)
     if text == "+" then
         love.graphics.setColor(bodyshadowcolor)
         skin.Triangle(arrowx + 1, arrowy + 1, 4, true)
-        love.graphics.setColor(255, 255, 255, 255)
+        love.graphics.setColor(1, 1, 1, 1)
         skin.Triangle(arrowx, arrowy, 4, true)
     elseif text == "-" then
         love.graphics.setColor(bodyshadowcolor)
         skin.Triangle(arrowx + 1, arrowy + 1, 4)
-        love.graphics.setColor(255, 255, 255, 255)
+        love.graphics.setColor(1, 1, 1, 1)
         skin.Triangle(arrowx, arrowy, 4)
     end
 end
@@ -774,7 +774,7 @@ function skin.DrawMultiChoice(object)
     
     love.graphics.setColor(shadowcolor)
     skin.Triangle(x + width - 14, y + 11, 5)
-    love.graphics.setColor(255, 255, 255)
+    love.graphics.setColor(1, 1, 1)
     skin.Triangle(x + width - 15, y + 10, 5)
     
 end
@@ -893,7 +893,7 @@ function skin.DrawTabButton(object)
         love.graphics.rectangle("fill", x, y, width, height + 3)
         if image then
             -- button image
-            love.graphics.setColor(255, 255, 255, 255)
+            love.graphics.setColor(1, 1, 1, 1)
             love.graphics.draw(image, x + 5, y + height/2 - imageheight/2)
             -- button text
             love.graphics.setFont(font)
@@ -911,7 +911,7 @@ function skin.DrawTabButton(object)
         love.graphics.rectangle("fill", x, y, width, height)
         if image then
             -- button image
-            love.graphics.setColor(255, 255, 255, 150)
+            love.graphics.setColor(1, 1, 1, 150/255)
             love.graphics.draw(image, x + 5, y + height/2 - imageheight/2)
             -- button text
             love.graphics.setFont(font)
@@ -977,14 +977,14 @@ function skin.DrawCollapsibleCategory(object)
     local font = smallfont
     
     if open then
-        love.graphics.setColor(0, 0, 0, 30)
+        love.graphics.setColor(0, 0, 0, 30/255)
         skin.Triangle(x + 10 + 1, y + 10 + 1, 5)
-        love.graphics.setColor(255, 255, 255, 255)
+        love.graphics.setColor(1, 1, 1, 1)
         skin.Triangle(x + 10, y + 10, 5)
     else
-        love.graphics.setColor(0, 0, 0, 30)
+        love.graphics.setColor(0, 0, 0, 30/255)
         skin.Triangle(x + 10 + 1, y + 10 + 1, 5, true)
-        love.graphics.setColor(255, 255, 255, 255)
+        love.graphics.setColor(1, 1, 1, 1)
         skin.Triangle(x + 10, y + 10, 5, true)
     end
     
@@ -1071,7 +1071,7 @@ function skin.DrawMenuOption(object)
             love.graphics.print(text, x + 26, y + 5)
         end
         if icon then
-            love.graphics.setColor(255, 255, 255, 255)
+            love.graphics.setColor(1, 1, 1, 1)
             love.graphics.draw(icon, x + 5, y + 5)
         end
         object.contentwidth = twidth + 31
