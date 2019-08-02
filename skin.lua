@@ -21,12 +21,12 @@ skin.base = "Blue"
 -- color definitions
 local rgb = require(path .. ".color").rgb
 
-local darkcolor = rgb(68, 68, 68)
-local bodycolor = rgb(236, 232, 232)
-local textcolor = rgb(32, 32, 32)
+local darkcolor = rgb(68/255, 68/255, 68/255)
+local bodycolor = rgb(236/255, 232/255, 232/255)
+local textcolor = rgb(32/255, 32/255, 32/255)
 
-local redcolor   = rgb(232, 67, 57)
-local whitecolor = rgb(255, 255, 255)
+local redcolor   = rgb(232/255, 67/255, 57/255)
+local whitecolor = rgb(1,1,1)
 
 -- fonts
 local smallfont     = love.graphics.newFont(dir .. "/font/Roboto-Light.ttf", 12)
