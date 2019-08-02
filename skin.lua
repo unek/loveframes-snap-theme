@@ -318,7 +318,7 @@ function skin.button(object)
     local skin = object:GetSkin()
     local parent = object:GetParent()
     if parent.type == "numberbox" then
-        skin.DrawNumberBoxButton(object)
+        skin.numberboxbutton(object)
         return
     end
 
