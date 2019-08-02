@@ -66,6 +66,12 @@ skin.controls.checkbox_body_shadow_color            = bodycolor:darken(10)
 skin.controls.checkbox_check_color                  = darkcolor
 skin.controls.checkbox_text_font                    = smallfont
 
+-- radiobutton
+skin.controls.radiobutton_body_color                = bodycolor:darken(5)
+skin.controls.radiobutton_check_color               = darkcolor
+skin.controls.radiobutton_inner_border_color        = bodycolor:darken(3)
+skin.controls.radiobutton_text_font                 = smallfont
+
 -- closebutton
 skin.controls.closebutton_body_nohover_color        = redcolor
 skin.controls.closebutton_body_down_color           = redcolor:darken(5)
