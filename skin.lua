@@ -1081,6 +1081,6 @@ function skin.DrawMenuOption(object)
 end
 
 -- register the skin
-loveframes.skins.Register(skin)loveframes.RegisterSkin(skin)
+loveframes.RegisterSkin(skin)
 
 end
