@@ -45,7 +45,7 @@ skin.controls.frame_name_color                      = whitecolor
 skin.controls.frame_name_font                       = boldfont
 skin.controls.frame_shadow_right_color              = bodycolor:darken(5)
 skin.controls.frame_shadow_bottom_color             = bodycolor:darken(15)
-skin.controls.frame_shadow_size                     = 0 -- increase to 3-5 for a cool 3d effect
+skin.controls.frame_shadow_size                     = 3 -- increase to 3-5 for a cool 3d effect
 
 -- button
 skin.controls.button_text_nohover_color             = textcolor
