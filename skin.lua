@@ -6,6 +6,7 @@
 -- skin path
 local dir = (...):sub(0, -6)
 local path = string.gsub(dir, "/", "%.")
+return function(loveframes)
 
 -- skin table
 local skin = {}
@@ -1079,4 +1080,6 @@ function skin.DrawMenuOption(object)
 end
 
 -- register the skin
-loveframes.skins.Register(skin)
+loveframes.skins.Register(skin)loveframes.RegisterSkin(skin)
+
+end
