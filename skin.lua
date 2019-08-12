@@ -4,8 +4,10 @@
 --]]------------------------------------------------
 
 -- skin path
-local dir = (...):sub(0, -6)
-local path = string.gsub(dir, "/", "%.")
+local path = (...):sub(0, -6)
+local dir = string.gsub(path, "%.", "/")
+
+return function(loveframes)
 
 -- skin table
 local skin = {}
@@ -19,12 +21,12 @@ skin.base = "Blue"
 -- color definitions
 local rgb = require(path .. ".color").rgb
 
-local darkcolor = rgb(68, 68, 68)
-local bodycolor = rgb(236, 232, 232)
-local textcolor = rgb(32, 32, 32)
+local darkcolor = rgb(68/255, 68/255, 68/255)
+local bodycolor = rgb(236/255, 232/255, 232/255)
+local textcolor = rgb(32/255, 32/255, 32/255)
 
-local redcolor   = rgb(232, 67, 57)
-local whitecolor = rgb(255, 255, 255)
+local redcolor   = rgb(232/255, 67/255, 57/255)
+local whitecolor = rgb(1,1,1)
 
 -- fonts
 local smallfont     = love.graphics.newFont(dir .. "/font/Roboto-Light.ttf", 12)
@@ -43,7 +45,7 @@ skin.controls.frame_name_color                      = whitecolor
 skin.controls.frame_name_font                       = boldfont
 skin.controls.frame_shadow_right_color              = bodycolor:darken(5)
 skin.controls.frame_shadow_bottom_color             = bodycolor:darken(15)
-skin.controls.frame_shadow_size                     = 0 -- increase to 3-5 for a cool 3d effect
+skin.controls.frame_shadow_size                     = 3 -- increase to 3-5 for a cool 3d effect
 
 -- button
 skin.controls.button_text_nohover_color             = textcolor
@@ -63,6 +65,12 @@ skin.controls.checkbox_body_hover_color             = bodycolor:darken(3)
 skin.controls.checkbox_body_shadow_color            = bodycolor:darken(10)
 skin.controls.checkbox_check_color                  = darkcolor
 skin.controls.checkbox_text_font                    = smallfont
+
+-- radiobutton
+skin.controls.radiobutton_body_color                = bodycolor:darken(5)
+skin.controls.radiobutton_check_color               = darkcolor
+skin.controls.radiobutton_inner_border_color        = bodycolor:darken(3)
+skin.controls.radiobutton_text_font                 = smallfont
 
 -- closebutton
 skin.controls.closebutton_body_nohover_color        = redcolor
@@ -192,7 +200,7 @@ end
     - func: DrawFrame(object)
     - desc: draws the frame object
 --]]---------------------------------------------------------
-function skin.DrawFrame(object)
+function skin.frame(object)
 
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -246,7 +254,7 @@ function skin.DrawFrame(object)
         local iconwidth = icon:getWidth()
         local iconheight = icon:getHeight()
         icon:setFilter("nearest", "nearest")
-        love.graphics.setColor(255, 255, 255, 255)
+        love.graphics.setColor(1, 1, 1, 1)
         love.graphics.draw(icon, x + 5, y + 5)
         love.graphics.setColor(namecolor)
         love.graphics.print(name, x + iconwidth + 10, y + 4)
@@ -257,7 +265,7 @@ function skin.DrawFrame(object)
     
 end
 
-function skin.DrawNumberBoxButton(object)
+function skin.numberboxbutton(object)
     
     local x = object:GetX()
     local y = object:GetY()
@@ -297,12 +305,12 @@ function skin.DrawNumberBoxButton(object)
     if text == "+" then
         love.graphics.setColor(bodyshadowcolor)
         skin.Triangle(arrowx + 1, arrowy + 1, 4, true)
-        love.graphics.setColor(255, 255, 255, 255)
+        love.graphics.setColor(1, 1, 1, 1)
         skin.Triangle(arrowx, arrowy, 4, true)
     elseif text == "-" then
         love.graphics.setColor(bodyshadowcolor)
         skin.Triangle(arrowx + 1, arrowy + 1, 4)
-        love.graphics.setColor(255, 255, 255, 255)
+        love.graphics.setColor(1, 1, 1, 1)
         skin.Triangle(arrowx, arrowy, 4)
     end
 end
@@ -311,12 +319,12 @@ end
     - func: DrawButton(object)
     - desc: draws the button object
 --]]---------------------------------------------------------
-function skin.DrawButton(object)
+function skin.button(object)
 
     local skin = object:GetSkin()
     local parent = object:GetParent()
     if parent.type == "numberbox" then
-        skin.DrawNumberBoxButton(object)
+        skin.numberboxbutton(object)
         return
     end
 
@@ -392,7 +400,7 @@ end
     - func: DrawCloseButton(object)
     - desc: draws the close button object
 --]]---------------------------------------------------------
-function skin.DrawCloseButton(object)
+function skin.closebutton(object)
 
     local skin = object:GetSkin()
     local parent = object.parent
@@ -429,7 +437,7 @@ end
     - func: skin.DrawCheckBox(object)
     - desc: draws the check box object
 --]]---------------------------------------------------------
-function skin.DrawCheckBox(object)
+function skin.checkbox(object)
     
     local skin = object:GetSkin()
     local x = object:GetX() + 2
@@ -466,7 +474,7 @@ end
     - func: skin.DrawColumnList(object)
     - desc: draws the column list object
 --]]---------------------------------------------------------
-function skin.DrawColumnList(object)
+function skin.columnlist(object)
     
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -484,7 +492,7 @@ end
     - func: skin.DrawColumnListHeader(object)
     - desc: draws the column list header object
 --]]---------------------------------------------------------
-function skin.DrawColumnListHeader(object)
+function skin.columnlistheader(object)
     
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -513,7 +521,7 @@ end
     - func: skin.DrawColumnListArea(object)
     - desc: draws the column list area object
 --]]---------------------------------------------------------
-function skin.DrawColumnListArea(object)
+function skin.columnlistarea(object)
         
 end
 
@@ -521,7 +529,7 @@ end
     - func: skin.DrawOverColumnListArea(object)
     - desc: draws over the column list area object
 --]]---------------------------------------------------------
-function skin.DrawOverColumnListArea(object)
+function skin.columnlistarea_over(object)
     
 end
 
@@ -529,7 +537,7 @@ end
     - func: skin.DrawColumnListRow(object)
     - desc: draws the column list row object
 --]]---------------------------------------------------------
-function skin.DrawColumnListRow(object)
+function skin.columnlistrow(object)
     
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -582,7 +590,7 @@ end
     - func: DrawScrollArea(object)
     - desc: draws the scroll area object
 --]]---------------------------------------------------------
-function skin.DrawScrollArea(object)
+function skin.scrollarea(object)
     
 end
 
@@ -590,7 +598,7 @@ end
     - func: DrawScrollBar(object)
     - desc: draws the scroll bar object
 --]]---------------------------------------------------------
-function skin.DrawScrollBar(object)
+function skin.scrollbar(object)
 
     local skin = object:GetSkin()
     local x = object:GetX() + 4
@@ -619,7 +627,7 @@ end
     - func: DrawScrollBody(object)
     - desc: draws the scroll body object
 --]]---------------------------------------------------------
-function skin.DrawScrollBody(object)
+function skin.scrollbody(object)
 
 end
 
@@ -627,7 +635,7 @@ end
     - func: DrawScrollButton(object)
     - desc: draws the scroll button object
 --]]---------------------------------------------------------
-function skin.DrawScrollButton(object)
+function skin.scrollbutton(object)
 
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -660,7 +668,7 @@ end
     - func: skin.DrawSlider(object)
     - desc: draws the slider object
 --]]---------------------------------------------------------
-function skin.DrawSlider(object)
+function skin.slider(object)
     
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -694,7 +702,7 @@ end
     - func: skin.DrawSliderButton(object)
     - desc: draws the slider button object
 --]]---------------------------------------------------------
-function skin.DrawSliderButton(object)
+function skin.sliderbutton(object)
 
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -738,7 +746,7 @@ end
     - func: DrawMultiChoice(object)
     - desc: draws the multi choice object
 --]]---------------------------------------------------------
-function skin.DrawMultiChoice(object)
+function skin.multichoice(object)
     
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -772,7 +780,7 @@ function skin.DrawMultiChoice(object)
     
     love.graphics.setColor(shadowcolor)
     skin.Triangle(x + width - 14, y + 11, 5)
-    love.graphics.setColor(255, 255, 255)
+    love.graphics.setColor(1, 1, 1)
     skin.Triangle(x + width - 15, y + 10, 5)
     
 end
@@ -781,7 +789,7 @@ end
     - func: DrawMultiChoiceList(object)
     - desc: draws the multi choice list object
 --]]---------------------------------------------------------
-function skin.DrawMultiChoiceList(object)
+function skin.multichoicelist(object)
     
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -799,7 +807,7 @@ end
     - func: DrawOverMultiChoiceList(object)
     - desc: draws over the multi choice list object
 --]]---------------------------------------------------------
-function skin.DrawOverMultiChoiceList(object)
+function skin.multichoicelist_over(object)
 
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -813,7 +821,7 @@ end
     - func: DrawMultiChoiceRow(object)
     - desc: draws the multi choice row object
 --]]---------------------------------------------------------
-function skin.DrawMultiChoiceRow(object)
+function skin.multichoicerow(object)
     
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -847,7 +855,7 @@ end
     - func: DrawTabButton(object)
     - desc: draws the tab button object
 --]]---------------------------------------------------------
-function skin.DrawTabButton(object)
+function skin.tabbutton(object)
 
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -891,7 +899,7 @@ function skin.DrawTabButton(object)
         love.graphics.rectangle("fill", x, y, width, height + 3)
         if image then
             -- button image
-            love.graphics.setColor(255, 255, 255, 255)
+            love.graphics.setColor(1, 1, 1, 1)
             love.graphics.draw(image, x + 5, y + height/2 - imageheight/2)
             -- button text
             love.graphics.setFont(font)
@@ -909,7 +917,7 @@ function skin.DrawTabButton(object)
         love.graphics.rectangle("fill", x, y, width, height)
         if image then
             -- button image
-            love.graphics.setColor(255, 255, 255, 150)
+            love.graphics.setColor(1, 1, 1, 150/255)
             love.graphics.draw(image, x + 5, y + height/2 - imageheight/2)
             -- button text
             love.graphics.setFont(font)
@@ -929,7 +937,7 @@ end
     - func: DrawProgressBar(object)
     - desc: draws the progress bar object
 --]]---------------------------------------------------------
-function skin.DrawProgressBar(object)
+function skin.progressbar(object)
 
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -962,7 +970,7 @@ end
     - func: skin.DrawCollapsibleCategory(object)
     - desc: draws the collapsible category object
 --]]---------------------------------------------------------
-function skin.DrawCollapsibleCategory(object)
+function skin.collapsiblecategory(object)
     
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -975,14 +983,14 @@ function skin.DrawCollapsibleCategory(object)
     local font = smallfont
     
     if open then
-        love.graphics.setColor(0, 0, 0, 30)
+        love.graphics.setColor(0, 0, 0, 30/255)
         skin.Triangle(x + 10 + 1, y + 10 + 1, 5)
-        love.graphics.setColor(255, 255, 255, 255)
+        love.graphics.setColor(1, 1, 1, 1)
         skin.Triangle(x + 10, y + 10, 5)
     else
-        love.graphics.setColor(0, 0, 0, 30)
+        love.graphics.setColor(0, 0, 0, 30/255)
         skin.Triangle(x + 10 + 1, y + 10 + 1, 5, true)
-        love.graphics.setColor(255, 255, 255, 255)
+        love.graphics.setColor(1, 1, 1, 1)
         skin.Triangle(x + 10, y + 10, 5, true)
     end
     
@@ -996,7 +1004,7 @@ end
     - func: skin.DrawForm(object)
     - desc: draws the form object
 --]]---------------------------------------------------------
-function skin.DrawForm(object)
+function skin.form(object)
 
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -1018,7 +1026,7 @@ end
     - func: skin.DrawMenu(object)
     - desc: draws the menu object
 --]]---------------------------------------------------------
-function skin.DrawMenu(object)
+function skin.menu(object)
     
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -1036,7 +1044,7 @@ end
     - func: skin.DrawMenuOption(object)
     - desc: draws the menuoption object
 --]]---------------------------------------------------------
-function skin.DrawMenuOption(object)
+function skin.menuoption(object)
 
     local skin = object:GetSkin()
     local x = object:GetX()
@@ -1069,7 +1077,7 @@ function skin.DrawMenuOption(object)
             love.graphics.print(text, x + 26, y + 5)
         end
         if icon then
-            love.graphics.setColor(255, 255, 255, 255)
+            love.graphics.setColor(1, 1, 1, 1)
             love.graphics.draw(icon, x + 5, y + 5)
         end
         object.contentwidth = twidth + 31
@@ -1079,4 +1087,6 @@ function skin.DrawMenuOption(object)
 end
 
 -- register the skin
-loveframes.skins.Register(skin)
+loveframes.RegisterSkin(skin)
+
+end
